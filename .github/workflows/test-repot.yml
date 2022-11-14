@@ -15,4 +15,5 @@ jobs:
         name: DotNET Tests
         path: 'test-results.trx'
         reporter: dotnet-trx
+        output-to: 'checks'
         fail-on-error: true  

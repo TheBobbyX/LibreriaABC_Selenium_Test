@@ -24,9 +24,10 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
     - name: Upload artifact for Selenium Test Results
       uses: actions/upload-artifact@v3
+      if: always()
       with:
         name: NUnit Selenium Test Results
         path: TestResults

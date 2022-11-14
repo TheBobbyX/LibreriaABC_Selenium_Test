@@ -420,7 +420,7 @@ namespace LibreriaABC_Selenium_Test
         [TestCase("8-893-2450", "Roberto", "America", "203-5050", "Calle 4ta, Casa 929-B, Parque Lefevre, Panama", "Panama", "Panama")]
         public void T010_EliminarEditorial(string user, string pass, string nameE, string phoneE, string addressE, string cityE, string provinceE)
         {
-            string idA = null;
+            string idA = "";
 
             //tamaño de ventana y url
             webDriver.Manage().Window.Maximize();

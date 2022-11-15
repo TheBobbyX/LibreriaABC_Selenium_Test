@@ -14,11 +14,13 @@ jobs:
   restore:
     runs-on: windows-latest
     steps:
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
     - name: Setup Nuget.exe
       uses: NuGet/setup-nuget@v1.0.2
 
     - name: Nuget restore
-      run: nuget restore LibreriaABC_Selenium_Test.sln
+      run: msbuild LibreriaABC_Selenium_Test.sln -t:restore
       
     - name: Upload artifact for Selenium Test
       uses: actions/upload-artifact@v3

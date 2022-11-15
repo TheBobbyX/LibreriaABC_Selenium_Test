@@ -41,8 +41,8 @@ jobs:
       with:
         name: NUnit Selenium
         
-    - name: Setup VSTest.exe
-      uses: Malcolmnixon/Setup-VSTest@v4
+    - name: Setup VSTest Path
+      uses: darenm/Setup-VSTest@v1.2
 
     - name: VSTest
       run: vstest.console bin/Debug/net6.0/LibreriaABC_Selenium_Test.dll --logger "trx;LogFileName=test-results.trx"

@@ -41,12 +41,13 @@ jobs:
       with:
         name: NUnit Selenium
         
-    - name: Setup VSTest Path
-      uses: darenm/Setup-VSTest@v1.2
-
-    - name: VSTest
-      run: vstest.console bin/Debug/net6.0/LibreriaABC_Selenium_Test.dll --logger "trx;LogFileName=test-results.trx"
-      
+    - name: Run vstests
+      uses: microsoft/vstest-action@v1.0.0
+      with:
+        testAssembly: LibreriaABC_Selenium_Test.dll
+        searchFolder: .\bin\Debug\net6.0
+        runInParallel: true
+        
     - name: Upload artifact for Selenium Test Results
       uses: actions/upload-artifact@v3
       if: always()

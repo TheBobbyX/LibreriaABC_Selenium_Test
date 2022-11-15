@@ -11,9 +11,10 @@ jobs:
     steps:
     - uses: phoenix-actions/test-reporting@v8
       id: test-report
+      if: always()
       with:
         artifact: NUnit Selenium Test Results
         name: DotNET Tests
         path: 'test-results.trx'
         reporter: dotnet-trx
-        fail-on-error: true  
+        fail-on-error: true

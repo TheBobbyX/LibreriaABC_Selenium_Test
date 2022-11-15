@@ -11,37 +11,18 @@ on:
     branches: [ "main" ]
     
 jobs:
-  restore:
-    runs-on: windows-latest
-    steps:
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
-    - name: Setup Nuget.exe
-      uses: NuGet/setup-nuget@v1.0.2
-
-    - name: Nuget restore
-      run: msbuild LibreriaABC_Selenium_Test.sln -t:restore
-      
-    - name: Upload artifact for Selenium Test
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: NUnit Selenium
-        path: .
   build:
     runs-on: windows-latest
-    needs: restore
     steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v3
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
       with:
-        name: NUnit Selenium
-        
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
-
-    - name: MSBuild
-      run: msbuild LibreriaABC_Selenium_Test.sln
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
       
     - name: Upload artifact for Selenium Test
       uses: actions/upload-artifact@v3

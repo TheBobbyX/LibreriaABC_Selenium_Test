@@ -45,7 +45,7 @@ jobs:
       uses: microsoft/vstest-action@v1.0.0
       with:
         testAssembly: LibreriaABC_Selenium_Test.dll
-        searchFolder: .\bin\Debug\net6.0
+        searchFolder: \bin\Debug\net6.0
         runInParallel: true
         
     - name: Upload artifact for Selenium Test Results

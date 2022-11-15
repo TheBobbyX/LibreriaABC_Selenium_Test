@@ -11,7 +11,7 @@ on:
     branches: [ "main" ]
     
 jobs:
-  build:
+  build_and_deploy_test:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
@@ -30,24 +30,9 @@ jobs:
       with:
         name: NUnit Selenium
         path: .
-        
-  deploy_test:
-    runs-on: windows-latest
-    needs: build
-    steps:
-    
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v3
-      with:
-        name: NUnit Selenium
-        
-    - name: Run vstests
-      uses: microsoft/vstest-action@v1.0.0
-      with:
-        testAssembly: LibreriaABC_Selenium_Test.dll
-        searchFolder: \bin\Debug\net6.0\
-        runInParallel: true
-        
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      
     - name: Upload artifact for Selenium Test Results
       uses: actions/upload-artifact@v3
       if: always()
@@ -56,7 +41,7 @@ jobs:
         path: .
   report:
     runs-on: ubuntu-latest
-    needs: deploy_test
+    needs: build_and_deploy_test
     steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v3

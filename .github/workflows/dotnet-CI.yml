@@ -10,27 +10,9 @@ on:
   pull_request:
     branches: [ "main" ]
     
-jobs:
-  restore_dependencies:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Upload artifact for Selenium Test
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: NUnit Selenium
-        path: .
-        
+jobs:    
   build:
-    runs-on: windows-latest
-    needs: restore_dependencies
+    runs-on: ubuntu-latest
     steps:
     - name: Download artifact from build job
       uses: actions/download-artifact@v3
@@ -42,7 +24,7 @@ jobs:
       with:
         dotnet-version: 6.0.x  
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build
       
     - name: Upload artifact for Selenium Test
       uses: actions/upload-artifact@v3

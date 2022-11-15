@@ -14,6 +14,6 @@ jobs:
       with:
         artifact: NUnit Selenium
         name: DotNET Tests
-        path: 'TestResults\test-results.trx'
+        path: 'TestResults/test-results.trx'
         reporter: dotnet-trx
         fail-on-error: true

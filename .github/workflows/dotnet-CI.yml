@@ -41,12 +41,12 @@ jobs:
       with:
         name: NUnit Selenium
         
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
-    - name: Test
-      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+    - name: Setup VSTest.exe
+      uses: Malcolmnixon/Setup-VSTest@v4
+
+    - name: VSTest
+      run: vstest.console bin/Debug/net6.0/LibreriaABC_Selenium_Test.dll --logger "trx;LogFileName=test-results.trx"
+      
     - name: Upload artifact for Selenium Test Results
       uses: actions/upload-artifact@v3
       if: always()

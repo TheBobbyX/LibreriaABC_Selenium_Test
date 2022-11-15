@@ -12,8 +12,8 @@ jobs:
       id: test-report
       if: always()
       with:
-        artifact: NUnit Selenium Test Results
+        artifact: NUnit Selenium
         name: DotNET Tests
-        path: 'test-results.trx'
+        path: '**\*.trx'
         reporter: dotnet-trx
         fail-on-error: true

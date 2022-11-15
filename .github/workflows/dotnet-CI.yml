@@ -15,7 +15,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
+      uses: NuGet/setup-nuget@v1.0.2
 
     - name: Nuget restore
       run: nuget restore LibreriaABC_Selenium_Test.sln

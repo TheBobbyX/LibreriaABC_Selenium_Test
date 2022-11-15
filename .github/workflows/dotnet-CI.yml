@@ -43,7 +43,7 @@ jobs:
       with:
         dotnet-version: 6.0.x   
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
     - name: Upload artifact for Selenium Test Results
       uses: actions/upload-artifact@v3
       if: always()

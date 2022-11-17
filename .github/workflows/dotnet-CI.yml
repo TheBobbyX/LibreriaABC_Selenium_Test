@@ -42,9 +42,11 @@ jobs:
       with:
         name: NUnit Selenium
         
-    - name: Parse Trx files
-      uses: NasAmin/trx-parser@v0.2.0
-      id: trx-parser
+    - uses: phoenix-actions/test-reporting@v8
+      if: always()
       with:
-        TRX_PATH: TestResults
-        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: DotNET Tests
+        path: 'TestResults/test-results.trx'
+        reporter: dotnet-trx
+        fail-on-error: true
+        token: ${{ secrets.GITHUB_TOKEN }}

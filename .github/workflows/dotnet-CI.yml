@@ -43,7 +43,7 @@ jobs:
         name: NUnit Selenium
         
     - name: Parse Trx files
-      uses: NasAmin/trx-parser@v0.1
+      uses: NasAmin/trx-parser@v0.2.0
       id: trx-parser
       with:
         TRX_PATH: TestResults

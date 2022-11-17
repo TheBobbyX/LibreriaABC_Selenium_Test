@@ -25,6 +25,7 @@ namespace LibreriaABC_Selenium_Test
 
         [Test]
         [TestCase("8-893-2450", "Roberto", "Daniela", "Gonzalez")]
+        [TestCase("8-893-2450", "Roberto", "Edgardo", "Bermudez")]
         public void T001_ListarAutores(string user, string pass, string nameA, string lastnameA)
         {
             //tamaño de ventana y url

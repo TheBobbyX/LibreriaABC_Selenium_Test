@@ -43,16 +43,18 @@ jobs:
     runs-on: windows-latest
     needs: build
     steps:
+      
+    - uses: actions/checkout@v3    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
         
     - name: Download artifact from build job
       uses: actions/download-artifact@v3
       with:
         name: Publish artifact
         
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
     - name: Test
       run: dotnet test LibreriaABC_Selenium_Test.dll --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
     
@@ -63,7 +65,4 @@ jobs:
         path: 'TestResults/test-results.trx'
         reporter: dotnet-trx
         fail-on-error: true
-        token: ${{ secrets.GITHUB_TOKEN }}
-  
-
-  
+        token: ${{ secrets.GITHUB_TOKEN }} 

@@ -55,7 +55,7 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Test
-      run: dotnet test LibreriaABC_Selenium_Test.dll --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet vstest LibreriaABC_Selenium_Test.dll --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
     
     - uses: dorny/test-reporter@v1.6.0
       if: always()

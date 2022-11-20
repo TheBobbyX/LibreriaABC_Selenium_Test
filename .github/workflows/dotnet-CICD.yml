@@ -14,13 +14,13 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - uses: actions/checkout@v3
     - uses: actions/cache@v3
       with:
         path: ~/.nuget/packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
-    - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -44,7 +44,7 @@ jobs:
     needs: build
     steps:
       
-    - uses: actions/checkout@v3    
+   # - uses: actions/checkout@v3    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
@@ -65,4 +65,4 @@ jobs:
         path: 'TestResults/test-results.trx'
         reporter: dotnet-trx
         fail-on-error: false
-        token: ${{ secrets.GITHUB_TOKEN }} 
+        #token: ${{ secrets.GITHUB_TOKEN }} 
